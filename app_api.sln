@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app_api", "app_api\app_api.csproj", "{C142A3B3-A1E6-40AE-9120-384EDF827BB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedApp", "app_api\MedApp.csproj", "{C142A3B3-A1E6-40AE-9120-384EDF827BB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedApp.Domain", "Domain\MedApp.Domain.csproj", "{E0851CCC-AAB8-4046-AAD5-55B0C16B0BE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedApp.DataAccessLayer", "DataAccessLayer\MedApp.DataAccessLayer.csproj", "{51580ECE-A690-4DCB-B8F6-5C67CC5A12E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{C142A3B3-A1E6-40AE-9120-384EDF827BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C142A3B3-A1E6-40AE-9120-384EDF827BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C142A3B3-A1E6-40AE-9120-384EDF827BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0851CCC-AAB8-4046-AAD5-55B0C16B0BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0851CCC-AAB8-4046-AAD5-55B0C16B0BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0851CCC-AAB8-4046-AAD5-55B0C16B0BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0851CCC-AAB8-4046-AAD5-55B0C16B0BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51580ECE-A690-4DCB-B8F6-5C67CC5A12E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51580ECE-A690-4DCB-B8F6-5C67CC5A12E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51580ECE-A690-4DCB-B8F6-5C67CC5A12E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51580ECE-A690-4DCB-B8F6-5C67CC5A12E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
