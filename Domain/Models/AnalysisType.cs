@@ -16,7 +16,7 @@ namespace Domain.Models
 
         public string Name { get; set; } = string.Empty;
 
-        private string? _fieldsData;
+        private string _fieldsData;
 
         [NotMapped]
         public JArray FieldsData
