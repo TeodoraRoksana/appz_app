@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedApp.Services.Implementation
 {
-    internal class AnalysisService : IAnalysisService
+    public class AnalysisService : IAnalysisService
     {
         protected IGenericRepository<AnalysisType> _repository;
 

@@ -1,5 +1,7 @@
 using DataAccessLayer.Implementation.EntityFramework;
 using DataAccessLayer.Interface;
+using MedApp.Services.Implementation;
+using MedApp.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,7 @@ builder.Services.AddDbContext<MedAppDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("SqlServerConnection")));
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericEfRepository<>));
+builder.Services.AddScoped<IAnalysisService, AnalysisService>();
 
 var app = builder.Build();
 
