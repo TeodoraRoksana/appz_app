@@ -1,12 +1,7 @@
 ﻿using Domain.Models.Base;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Models
 {
@@ -23,7 +18,7 @@ namespace Domain.Models
         {
             get
             {
-                return JsonConvert.DeserializeObject<JArray>(string.IsNullOrEmpty(_fieldsData) ? "{}" : _fieldsData);
+                return JsonConvert.DeserializeObject<JArray>(string.IsNullOrEmpty(_fieldsData) ? "[]" : _fieldsData);
             }
 
             set
