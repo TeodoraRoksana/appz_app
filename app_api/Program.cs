@@ -1,7 +1,9 @@
+using AutoMapper;
 using DataAccessLayer.Implementation.EntityFramework;
 using DataAccessLayer.Interface;
 using MedApp.Services.Implementation;
 using MedApp.Services.Interfaces;
+using MedApp.Services.Mapper;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,8 +19,20 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MedAppDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("SqlServerConnection")));
 
+/*
+ * DEPENDENCY INJECTION
+ */
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericEfRepository<>));
 builder.Services.AddScoped<IAnalysisService, AnalysisService>();
+
+/*
+ * MAPPER INJECTION
+ */
+builder.Services.AddScoped(provider => new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new MapperProfile());
+    cfg.AllowNullCollections = true;
+}).CreateMapper());
 
 var app = builder.Build();
 

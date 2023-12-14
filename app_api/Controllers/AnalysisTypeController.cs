@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using MedApp.Domain.DTO;
 using MedApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +15,73 @@ namespace MedApp.Controllers
             _service = services;
         }
 
-        // GET: api/<ManagerController>
+        // GET: api/<AnalysisTypeController>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AnalysisType>>> Get()
+        public async Task<ActionResult<IEnumerable<AnalysisTypeDTO>>> Get()
         {
-            return Ok(await _service.GetAllAnalysisTypes());
+            return Ok(await _service.GetAllAnalysisTypesAsync());
+        }
+
+        // GET api/<AnalysisTypeController>/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AnalysisTypeDTO>> Get(int id)
+        {
+            try
+            {
+                var manager = await _service.GetAnalysisTypesByIdAsync(id);
+
+                return Ok(manager);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // POST api/<AnalysisTypeController>
+        [HttpPost]
+        public async Task<ActionResult<int>> Post([FromBody] AnalysisTypeDTO analysisType)
+        {
+            try
+            {
+                var id = await _service.CreateAnalysisTypeAsync(analysisType);
+
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // PUT api/<AnalysisTypeController>/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] AnalysisTypeDTO analysisType)
+        {
+            try
+            {
+                await _service.UpdateAnalysisTypeByIdAsync(id, analysisType);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // DELETE api/<AnalysisTypeController>/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _service.DeleteAnalysisTypeByIdAsync(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
