@@ -18,7 +18,7 @@ namespace Domain.Models
         public int UserDataId { get; set; } = 0;
 
         [JsonIgnore]
-        public UserData UserData { get; set; }
+        virtual public UserData UserData { get; set; }
 
 
         public DateTime? Time { get; set; }
@@ -27,7 +27,7 @@ namespace Domain.Models
         public int AnalysisTypeId { get; set; } = 0;
 
         [JsonIgnore]
-        public AnalysisType AnalysisType { get; set; }
+        virtual public AnalysisType AnalysisType { get; set; }
 
 
         private string? _analysisData;

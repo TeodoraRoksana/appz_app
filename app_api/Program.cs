@@ -24,6 +24,7 @@ builder.Services.AddDbContext<MedAppDbContext>(options => options.UseSqlServer(
  */
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericEfRepository<>));
 builder.Services.AddScoped<IAnalysisService, AnalysisService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 /*
  * MAPPER INJECTION

@@ -31,6 +31,6 @@ namespace MedApp.Services.Interfaces
         Task DeleteAnalysisResultByIdAsync(int id);
 
         // USER METHODS
-        Task<IEnumerable<AnalysisResult>> GetAllAnalysisForUser(int id);
+        Task<IEnumerable<AnalysisShortDataDTO>> GetAllAnalysisForUser(int id);
     }
 }

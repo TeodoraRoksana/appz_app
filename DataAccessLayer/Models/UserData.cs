@@ -18,7 +18,7 @@ namespace Domain.Models
 
         public string Login { get; set; } = string.Empty;
 
-        public UserRole UserRole { get; set; }
+        virtual public UserRole UserRole { get; set; }
 
         // TODO: add wards. maybe we need ManyToManyRepository for it?
     }

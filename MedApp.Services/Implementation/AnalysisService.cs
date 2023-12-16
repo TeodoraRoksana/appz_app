@@ -15,14 +15,17 @@ namespace MedApp.Services.Implementation
     {
         protected IGenericRepository<AnalysisType> _analysisTypeRepository;
         protected IGenericRepository<AnalysisResult> _analysisResultRepository;
+        protected IUserService _usersService;
         protected IMapper _mapper;
 
         public AnalysisService(IGenericRepository<AnalysisType> analysisTypeRepository,
                                IGenericRepository<AnalysisResult> analysisResultRepository,
+                               IUserService usersService,
                                IMapper mapper)
         {
             _analysisTypeRepository = analysisTypeRepository;
             _analysisResultRepository = analysisResultRepository;
+            _usersService = usersService;
             _mapper = mapper;
         }
 
@@ -152,12 +155,23 @@ namespace MedApp.Services.Implementation
 
         #region User
 
-        public async Task<IEnumerable<AnalysisResult>> GetAllAnalysisForUser(int userId)
+        public async Task<IEnumerable<AnalysisShortDataDTO>> GetAllAnalysisForUser(int userId)
         {
+            // This cause exception if user does not exist
+            var user = await _usersService.GetUserByIdAsync(userId);
+
             // TODO: add patients if user is doctor
             var allAnalyses = (await _analysisResultRepository.GetByConditionAsync(e => e.UserDataId.Equals(userId)));
 
-            return allAnalyses;
+            return allAnalyses
+                .Select(analysis => new AnalysisShortDataDTO 
+                { 
+                    AnalysisId = analysis.Id, 
+                    AnalysisName = analysis.AnalysisType.Name,
+                    PatientName = analysis.UserData.Name,
+                    PatientSurname = analysis.UserData.Surname,
+                    Time = analysis.Time
+                });
         }
 
         #endregion
