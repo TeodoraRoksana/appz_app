@@ -1,4 +1,5 @@
-﻿using MedApp.Domain.DTO;
+﻿using Domain.Models;
+using MedApp.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

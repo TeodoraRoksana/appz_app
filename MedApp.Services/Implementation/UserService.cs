@@ -17,7 +17,7 @@ namespace MedApp.Services.Implementation
         protected IMapper _mapper;
 
         public UserService(IGenericRepository<UserData> userRepository,
-                               IMapper mapper)
+                           IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;

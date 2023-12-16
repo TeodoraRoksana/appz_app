@@ -30,6 +30,7 @@ builder.Services.AddDbContext<MedAppDbContext>(options => options.UseSqlServer(
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericEfRepository<>));
 builder.Services.AddScoped<IAnalysisService, AnalysisService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 
 /*
  * MAPPER INJECTION
@@ -52,6 +53,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("corsapp");
 
 app.MapControllers();
 

@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace MedApp.Domain.DTO
 {
-    public class UserDataDTO
+    public class LoginData
     {
-        public string Name { get; set; } = string.Empty;
-
-        public string Surname { get; set; } = string.Empty;
-
         public string Login { get; set; } = string.Empty;
 
         public string EncryptedPassword { get; set; } = string.Empty;
-
-        public UserRoleDTO UserRole { get; set; }
     }
 }
