@@ -11,7 +11,7 @@ namespace MedApp.Services.Interfaces
     public interface IAnalysisService
     {
         // ANALYSIS TYPE METHODS
-        Task<IEnumerable<AnalysisTypeDTO>> GetAllAnalysisTypesAsync();
+        Task<IEnumerable<AnalysisType>> GetAllAnalysisTypesAsync();
 
         Task<AnalysisTypeDTO> GetAnalysisTypesByIdAsync(int id);
 

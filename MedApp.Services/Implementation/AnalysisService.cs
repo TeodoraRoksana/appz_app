@@ -52,12 +52,11 @@ namespace MedApp.Services.Implementation
             await _analysisTypeRepository.DeleteAsync(entity);
         }
 
-        public async Task<IEnumerable<AnalysisTypeDTO>> GetAllAnalysisTypesAsync()
+        public async Task<IEnumerable<AnalysisType>> GetAllAnalysisTypesAsync()
         {
             var allEntities = (await _analysisTypeRepository.GetAllAsync()).ToList();
-            var entityDTOs = _mapper.Map<List<AnalysisTypeDTO>>(allEntities);
-
-            return entityDTOs;
+            
+            return allEntities;
         }
 
         public async Task<AnalysisTypeDTO> GetAnalysisTypesByIdAsync(int id)

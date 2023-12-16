@@ -1,4 +1,5 @@
-﻿using MedApp.Domain.DTO;
+﻿using Domain.Models;
+using MedApp.Domain.DTO;
 using MedApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace MedApp.Controllers
 
         // GET: api/<AnalysisTypeController>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AnalysisTypeDTO>>> Get()
+        public async Task<ActionResult<IEnumerable<AnalysisType>>> Get()
         {
             return Ok(await _service.GetAllAnalysisTypesAsync());
         }

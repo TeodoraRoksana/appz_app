@@ -7,12 +7,15 @@ namespace Domain.Models
 {
     public class AnalysisType : IBaseModel
     {
+        [JsonProperty("id")]
         public int Id { get; set; }
 
+        [JsonProperty("name")]
         public string Name { get; set; } = string.Empty;
 
         private string _fieldsData;
 
+        [JsonProperty("fields")]
         [NotMapped]
         public JArray FieldsData
         {
