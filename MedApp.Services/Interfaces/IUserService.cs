@@ -11,5 +11,6 @@ namespace MedApp.Services.Interfaces
     public interface IUserService
     {
         Task<UserDataDTO> GetUserByIdAsync(int id);
+        Task<IEnumerable<UserDataDTO>> GetAllWardsForUser(int userId);
     }
 }

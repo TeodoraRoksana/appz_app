@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DataAccessLayer.Interface;
 using Domain.Models;
+using MedApp.DataAccessLayer.Models;
 using MedApp.Domain.DTO;
 using MedApp.Services.Interfaces;
 using System;
@@ -14,12 +15,15 @@ namespace MedApp.Services.Implementation
     public class UserService : IUserService
     {
         protected IGenericRepository<UserData> _userRepository;
+        protected IGenericRepository<UsersWards> _usersWardsRepository;
         protected IMapper _mapper;
 
         public UserService(IGenericRepository<UserData> userRepository,
+                           IGenericRepository<UsersWards> usersWardsRepository,
                            IMapper mapper)
         {
             _userRepository = userRepository;
+            _usersWardsRepository = usersWardsRepository;
             _mapper = mapper;
         }
 
@@ -39,6 +43,50 @@ namespace MedApp.Services.Implementation
             }
 
             return user;
+        }
+
+
+
+        public async Task<List<UsersWardsDTO>> GetWardsIdByIdAsync(int id)
+        {
+            var wards = await GetWards(id);
+            var entityDTO = _mapper.Map<List<UsersWardsDTO>>(wards);
+            return entityDTO;
+        }
+
+        private async Task<List<UsersWards>> GetWards(int id)
+        {
+            var wards = (await _usersWardsRepository.GetByConditionAsync(users => users.UserId.Equals(id))).ToList();
+
+            if (wards == null)
+            {
+                throw new Exception($"no {typeof(UsersWards).Name} with id = {id}");
+            }
+
+            return wards;
+        }
+
+        public async Task<IEnumerable<UserDataDTO>> GetAllWardsForUser(int userId)
+        {
+            // This cause exception if user does not exist
+            var user = await GetUserByIdAsync(userId);
+
+            // TODO: add patients if user is doctor
+            var allWards = (await _usersWardsRepository.GetByConditionAsync(e => e.UserId.Equals(userId)));
+
+            var usersData = allWards
+                .Select(ward => new UserData
+                {
+                    Id = ward.WardUser.Id,
+                    Login = ward.WardUser.Login,
+                    Name = ward.WardUser.Name,
+                    Surname = ward.WardUser.Surname,
+                    EncryptedPassword = ward.WardUser.EncryptedPassword,
+                    UserRole = ward.WardUser.UserRole,
+                    UserRoleId = ward.WardUser.UserRoleId
+                });
+
+            return _mapper.Map<List<UserDataDTO>>(usersData);
         }
     }
 }

@@ -21,6 +21,9 @@ namespace MedApp.Services.Mapper
 
             CreateMap<UserRole, UserRoleDTO>();
             CreateMap<UserRoleDTO, UserRole>();
+
+            CreateMap<UsersWards, UsersWardsDTO>();
+            CreateMap<UsersWardsDTO, UsersWards>();
         }
     }
 }
