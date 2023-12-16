@@ -11,6 +11,6 @@ namespace Domain.Models
 
         AnalysisTypeDTO AnalysisType { get; set; }
 
-        public JObject AnalysisData { get; set; }
+        public JArray AnalysisData { get; set; }
     }
 }

@@ -33,11 +33,11 @@ namespace Domain.Models
         private string? _analysisData;
 
         [NotMapped]
-        public JObject AnalysisData
+        public JArray AnalysisData
         {
             get
             {
-                return JsonConvert.DeserializeObject<JObject>(string.IsNullOrEmpty(_analysisData) ? "{}" : _analysisData);
+                return JsonConvert.DeserializeObject<JArray>(string.IsNullOrEmpty(_analysisData) ? "[]" : _analysisData);
             }
 
             set
