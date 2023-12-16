@@ -28,9 +28,9 @@ namespace MedApp.Controllers
         {
             try
             {
-                var manager = await _service.GetAnalysisTypesByIdAsync(id);
+                var analysisType = await _service.GetAnalysisTypesByIdAsync(id);
 
-                return Ok(manager);
+                return Ok(analysisType);
             }
             catch (Exception ex)
             {

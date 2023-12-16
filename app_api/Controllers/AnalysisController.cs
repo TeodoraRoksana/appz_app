@@ -16,15 +16,15 @@ namespace MedApp.Controllers
             _service = services;
         }
 
-        // GET api/<AnalysisTypeController>/5
+        // GET api/<AnalysisController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AnalysisResultDTO>> Get(int id)
         {
             try
             {
-                var manager = await _service.GetAnalysisTypesByIdAsync(id);
+                var analysis = await _service.GetAnalysisResultByIdAsync(id);
 
-                return Ok(manager);
+                return Ok(analysis);
             }
             catch (Exception ex)
             {
@@ -32,13 +32,13 @@ namespace MedApp.Controllers
             }
         }
 
-        // POST api/<AnalysisTypeController>
+        // POST api/<AnalysisController>
         [HttpPost]
-        public async Task<ActionResult<int>> Post([FromBody] AnalysisTypeDTO analysisType)
+        public async Task<ActionResult<int>> Post([FromBody] AnalysisResultDTO analysis)
         {
             try
             {
-                var id = await _service.CreateAnalysisTypeAsync(analysisType);
+                var id = await _service.CreateAnalysisResultAsync(analysis);
 
                 return Ok(id);
             }
@@ -48,13 +48,13 @@ namespace MedApp.Controllers
             }
         }
 
-        // PUT api/<AnalysisTypeController>/5
+        // PUT api/<AnalysisController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] AnalysisTypeDTO analysisType)
+        public async Task<IActionResult> Put(int id, [FromBody] AnalysisResultDTO analysis)
         {
             try
             {
-                await _service.UpdateAnalysisTypeByIdAsync(id, analysisType);
+                await _service.UpdateAnalysisResultByIdAsync(id, analysis);
                 return Ok();
             }
             catch (Exception ex)
@@ -63,13 +63,13 @@ namespace MedApp.Controllers
             }
         }
 
-        // DELETE api/<AnalysisTypeController>/5
+        // DELETE api/<AnalysisController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                await _service.DeleteAnalysisTypeByIdAsync(id);
+                await _service.DeleteAnalysisResultByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)

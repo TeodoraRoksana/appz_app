@@ -102,6 +102,7 @@ namespace MedApp.Services.Implementation
 
         public async Task<int> CreateAnalysisResultAsync(AnalysisResultDTO analysisResultDTO)
         {
+            // TODO: Add validation
             var entity = _mapper.Map<AnalysisResult>(analysisResultDTO);
             try
             {
@@ -116,6 +117,7 @@ namespace MedApp.Services.Implementation
 
         public async Task UpdateAnalysisResultByIdAsync(int id, AnalysisResultDTO analysisResultDTO)
         {
+            // TODO: Add validation
             try
             {
                 var entity = await GetAnalysisResult(id);
