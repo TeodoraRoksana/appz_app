@@ -13,11 +13,22 @@ namespace Domain.Models
     public class AnalysisResult : IBaseModel
     {
         public int Id { get; set; }
-        Patient Patient { get; set; }
+
+
+        public int UserDataId { get; set; } = 0;
+
+        [JsonIgnore]
+        public UserData UserData { get; set; }
+
 
         public DateTime? Time { get; set; }
 
-        AnalysisType AnalysisType { get; set; }
+
+        public int AnalysisTypeId { get; set; } = 0;
+
+        [JsonIgnore]
+        public AnalysisType AnalysisType { get; set; }
+
 
         private string? _analysisData;
 

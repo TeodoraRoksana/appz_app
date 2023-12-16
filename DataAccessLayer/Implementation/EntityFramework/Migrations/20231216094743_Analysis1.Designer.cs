@@ -4,6 +4,7 @@ using DataAccessLayer.Implementation.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedApp.DataAccessLayer.Implementation.EntityFramework.Migrations
 {
     [DbContext(typeof(MedAppDbContext))]
-    partial class MedAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231216094743_Analysis1")]
+    partial class Analysis1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,9 +40,6 @@ namespace MedApp.DataAccessLayer.Implementation.EntityFramework.Migrations
 
                     b.Property<int>("UserDataId")
                         .HasColumnType("int");
-
-                    b.Property<string>("_analysisData")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -92,31 +91,9 @@ namespace MedApp.DataAccessLayer.Implementation.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserRoleId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserRoleId");
-
-                    b.ToTable("UserData");
-                });
-
-            modelBuilder.Entity("MedApp.DataAccessLayer.Models.UserRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserRoles");
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("Domain.Models.AnalysisResult", b =>
@@ -136,17 +113,6 @@ namespace MedApp.DataAccessLayer.Implementation.EntityFramework.Migrations
                     b.Navigation("AnalysisType");
 
                     b.Navigation("UserData");
-                });
-
-            modelBuilder.Entity("Domain.Models.UserData", b =>
-                {
-                    b.HasOne("MedApp.DataAccessLayer.Models.UserRole", "UserRole")
-                        .WithMany()
-                        .HasForeignKey("UserRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserRole");
                 });
 #pragma warning restore 612, 618
         }

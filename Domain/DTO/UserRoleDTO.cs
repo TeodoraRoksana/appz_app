@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace MedApp.Domain.DTO
 {
-    public class PatientDTO
+    public class UserRoleDTO
     {
         public string Name { get; set; } = string.Empty;
-
-        public string Surname { get; set; } = string.Empty;
     }
 }

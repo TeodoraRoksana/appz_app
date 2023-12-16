@@ -5,7 +5,7 @@ namespace Domain.Models
 {
     public class AnalysisResultDTO
     {
-        PatientDTO Patient { get; set; }
+        UserDataDTO Patient { get; set; }
 
         public DateTime? Time { get; set; }
 

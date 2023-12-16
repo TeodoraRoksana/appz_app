@@ -13,21 +13,27 @@ namespace MedApp.Services.Implementation
 {
     public class AnalysisService : IAnalysisService
     {
-        protected IGenericRepository<AnalysisType> _repository;
+        protected IGenericRepository<AnalysisType> _analysisTypeRepository;
+        protected IGenericRepository<AnalysisResult> _analysisResultRepository;
         protected IMapper _mapper;
 
-        public AnalysisService(IGenericRepository<AnalysisType> repository, IMapper mapper)
+        public AnalysisService(IGenericRepository<AnalysisType> analysisTypeRepository,
+                               IGenericRepository<AnalysisResult> analysisResultRepository,
+                               IMapper mapper)
         {
-            _repository = repository;
+            _analysisTypeRepository = analysisTypeRepository;
+            _analysisResultRepository = analysisResultRepository;
             _mapper = mapper;
         }
+
+        #region Analysis Type
 
         public async Task<int> CreateAnalysisTypeAsync(AnalysisTypeDTO analysisTypeDTO)
         {
             var entity = _mapper.Map<AnalysisType>(analysisTypeDTO);
             try
             {
-                await _repository.CreateAsync(entity);
+                await _analysisTypeRepository.CreateAsync(entity);
                 return entity.Id;
             }
             catch (Exception ex)
@@ -40,12 +46,12 @@ namespace MedApp.Services.Implementation
         {
             var entity = await GetAnalysisType(id);
 
-            await _repository.DeleteAsync(entity);
+            await _analysisTypeRepository.DeleteAsync(entity);
         }
 
         public async Task<IEnumerable<AnalysisTypeDTO>> GetAllAnalysisTypesAsync()
         {
-            var allEntities = (await _repository.GetAllAsync()).ToList();
+            var allEntities = (await _analysisTypeRepository.GetAllAsync()).ToList();
             var entityDTOs = _mapper.Map<List<AnalysisTypeDTO>>(allEntities);
 
             return entityDTOs;
@@ -64,7 +70,7 @@ namespace MedApp.Services.Implementation
             {
                 var entity = await GetAnalysisType(id);
                 entity = _mapper.Map(analysisTypeDTO, entity);
-                await _repository.UpdateAsync(entity);
+                await _analysisTypeRepository.UpdateAsync(entity);
             }
             catch (Exception ex)
             {
@@ -74,7 +80,7 @@ namespace MedApp.Services.Implementation
 
         private async Task<AnalysisType> GetAnalysisType(int id)
         {
-            var entity = (await _repository.GetByConditionAsync(e => e.Id.Equals(id))).FirstOrDefault();
+            var entity = (await _analysisTypeRepository.GetByConditionAsync(e => e.Id.Equals(id))).FirstOrDefault();
             if (entity == null)
             {
                 throw new Exception($"no {typeof(AnalysisType).Name} with id = {id}");
@@ -82,5 +88,76 @@ namespace MedApp.Services.Implementation
 
             return entity;
         }
+
+        #endregion
+
+        #region Analysis Result
+
+        public async Task<AnalysisResultDTO> GetAnalysisResultByIdAsync(int id)
+        {
+            var entity = await GetAnalysisResult(id);
+            var entityDTO = _mapper.Map<AnalysisResultDTO>(entity);
+            return entityDTO;
+        }
+
+        public async Task<int> CreateAnalysisResultAsync(AnalysisResultDTO analysisResultDTO)
+        {
+            var entity = _mapper.Map<AnalysisResult>(analysisResultDTO);
+            try
+            {
+                await _analysisResultRepository.CreateAsync(entity);
+                return entity.Id;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"cant add {typeof(AnalysisResult).Name}!", ex);
+            }
+        }
+
+        public async Task UpdateAnalysisResultByIdAsync(int id, AnalysisResultDTO analysisResultDTO)
+        {
+            try
+            {
+                var entity = await GetAnalysisResult(id);
+                entity = _mapper.Map(analysisResultDTO, entity);
+                await _analysisResultRepository.UpdateAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"cant update {typeof(AnalysisResult).Name} with id = {id}", ex);
+            }
+        }
+
+        public async Task DeleteAnalysisResultByIdAsync(int id)
+        {
+            var entity = await GetAnalysisResult(id);
+
+            await _analysisResultRepository.DeleteAsync(entity);
+        }
+
+        private async Task<AnalysisResult> GetAnalysisResult(int id)
+        {
+            var entity = (await _analysisResultRepository.GetByConditionAsync(e => e.Id.Equals(id))).FirstOrDefault();
+            if (entity == null)
+            {
+                throw new Exception($"no {typeof(AnalysisResult).Name} with id = {id}");
+            }
+
+            return entity;
+        }
+
+        #endregion
+
+        #region User
+
+        public async Task<IEnumerable<AnalysisResult>> GetAllAnalysisForUser(int userId)
+        {
+            // TODO: add patients if user is doctor
+            var allAnalyses = (await _analysisResultRepository.GetByConditionAsync(e => e.UserDataId.Equals(userId)));
+
+            return allAnalyses;
+        }
+
+        #endregion
     }
 }

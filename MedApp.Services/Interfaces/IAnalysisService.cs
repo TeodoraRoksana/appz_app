@@ -10,6 +10,7 @@ namespace MedApp.Services.Interfaces
 {
     public interface IAnalysisService
     {
+        // ANALYSIS TYPE METHODS
         Task<IEnumerable<AnalysisTypeDTO>> GetAllAnalysisTypesAsync();
 
         Task<AnalysisTypeDTO> GetAnalysisTypesByIdAsync(int id);
@@ -19,5 +20,17 @@ namespace MedApp.Services.Interfaces
         Task UpdateAnalysisTypeByIdAsync(int id, AnalysisTypeDTO analysisTypeDTO);
 
         Task DeleteAnalysisTypeByIdAsync(int id);
+
+        // ANALYSIS RESULT METHODS
+        Task<AnalysisResultDTO> GetAnalysisResultByIdAsync(int id);
+
+        Task<int> CreateAnalysisResultAsync(AnalysisResultDTO analysisTypeDTO);
+
+        Task UpdateAnalysisResultByIdAsync(int id, AnalysisResultDTO analysisTypeDTO);
+
+        Task DeleteAnalysisResultByIdAsync(int id);
+
+        // USER METHODS
+        Task<IEnumerable<AnalysisResult>> GetAllAnalysisForUser(int id);
     }
 }

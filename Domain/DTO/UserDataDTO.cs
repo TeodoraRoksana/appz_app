@@ -1,17 +1,19 @@
-﻿using Domain.Models.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace MedApp.Domain.DTO
 {
-    public class Patient : IBaseModel
+    public class UserDataDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
 
         public string Surname { get; set; } = string.Empty;
+
+        public string Login { get; set; } = string.Empty;
+
+        public UserRoleDTO UserRole { get; set; }
     }
 }

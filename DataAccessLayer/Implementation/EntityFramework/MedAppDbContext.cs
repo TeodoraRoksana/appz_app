@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
 using System.Reflection.Metadata;
+using MedApp.DataAccessLayer.Models;
 
 namespace DataAccessLayer.Implementation.EntityFramework
 {
@@ -19,10 +20,12 @@ namespace DataAccessLayer.Implementation.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AnalysisType>().Property("_fieldsData");
+            modelBuilder.Entity<AnalysisResult>().Property("_analysisData");
         }
 
-        public DbSet<Patient> Patients { get; set; }
+        public DbSet<UserData> UserData { get; set; }
         public DbSet<AnalysisResult> AnalysisResults { get; set; }
         public DbSet<AnalysisType> AnalysisTypes { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
     }
 }
