@@ -8,8 +8,6 @@
 
         public string Surname { get; set; } = string.Empty;
 
-        public string Login { get; set; } = string.Empty;
-
         public int UserRoleId { get; set; } = 0;
     }
 }
