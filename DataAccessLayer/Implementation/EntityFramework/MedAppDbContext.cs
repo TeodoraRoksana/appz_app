@@ -33,5 +33,7 @@ namespace DataAccessLayer.Implementation.EntityFramework
         public DbSet<AnalysisResult> AnalysisResults { get; set; }
         public DbSet<AnalysisType> AnalysisTypes { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<UsersWards> Users_Wards { get; set; }
+
     }
 }

@@ -4,6 +4,7 @@ using DataAccessLayer.Implementation.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedApp.DataAccessLayer.Implementation.EntityFramework.Migrations
 {
     [DbContext(typeof(MedAppDbContext))]
-    partial class MedAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231216164951_AddUsersWards")]
+    partial class AddUsersWards
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,11 +135,14 @@ namespace MedApp.DataAccessLayer.Implementation.EntityFramework.Migrations
                     b.Property<int>("WardUserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Ward_UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("WardUserId");
+                    b.HasIndex("Ward_UserId");
 
                     b.ToTable("Users_Wards");
                 });
@@ -180,15 +185,15 @@ namespace MedApp.DataAccessLayer.Implementation.EntityFramework.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.UserData", "WardUser")
+                    b.HasOne("Domain.Models.UserData", "Ward_User")
                         .WithMany()
-                        .HasForeignKey("WardUserId")
+                        .HasForeignKey("Ward_UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
 
-                    b.Navigation("WardUser");
+                    b.Navigation("Ward_User");
                 });
 #pragma warning restore 612, 618
         }
