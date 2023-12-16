@@ -15,6 +15,11 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
+
 //builder.Services.AddDbContext<MedAppDbContext>(x => x.UseLazyLoadingProxies().UseSqlServer(connection));
 builder.Services.AddDbContext<MedAppDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("SqlServerConnection")));
