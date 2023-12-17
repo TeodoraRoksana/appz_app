@@ -1,4 +1,5 @@
-﻿using MedApp.Domain.DTO;
+﻿using Domain.Models;
+using MedApp.Domain.DTO;
 using MedApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace MedApp.Controllers
 
         // GET api/<UsersWardsController>/UserId
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<UserDataDTO>>> Get(int id)
+        public async Task<ActionResult<IEnumerable<UserData>>> Get(int id)
         {
             try
             {

@@ -66,7 +66,7 @@ namespace MedApp.Services.Implementation
             return wards;
         }
 
-        public async Task<IEnumerable<UserDataDTO>> GetAllWardsForUser(int userId)
+        public async Task<IEnumerable<UserData>> GetAllWardsForUser(int userId)
         {
             // This cause exception if user does not exist
             var user = await GetUserByIdAsync(userId);
@@ -86,7 +86,7 @@ namespace MedApp.Services.Implementation
                     UserRoleId = ward.WardUser.UserRoleId
                 });
 
-            return _mapper.Map<List<UserDataDTO>>(usersData);
+            return usersData;
         }
     }
 }
