@@ -32,6 +32,7 @@ namespace MedApp.Services.Implementation
                 throw new Exception($"no user with login {loginData.Login}");
             }
 
+            Console.WriteLine(BCrypt.Net.BCrypt.EnhancedHashPassword(loginData.Password, 10));
             if (!BCrypt.Net.BCrypt.EnhancedVerify(loginData.Password, user.EncryptedPassword))
             {
                 throw new Exception($"invalid password for {loginData.Login}");
