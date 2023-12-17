@@ -16,6 +16,7 @@ namespace Domain.Models
 
         public string EncryptedPassword { get; set; } = string.Empty;
 
+        public string IconURL { get; set; } = string.Empty;
 
         public int UserRoleId { get; set; } = 0;
 

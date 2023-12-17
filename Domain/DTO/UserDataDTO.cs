@@ -16,6 +16,8 @@ namespace MedApp.Domain.DTO
 
         public string EncryptedPassword { get; set; } = string.Empty;
 
+        public string IconURL { get; set; } = string.Empty;
+
         public UserRoleDTO UserRole { get; set; }
     }
 }

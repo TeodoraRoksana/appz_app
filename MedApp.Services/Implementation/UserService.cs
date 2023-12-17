@@ -83,7 +83,8 @@ namespace MedApp.Services.Implementation
                     Surname = ward.WardUser.Surname,
                     EncryptedPassword = ward.WardUser.EncryptedPassword,
                     UserRole = ward.WardUser.UserRole,
-                    UserRoleId = ward.WardUser.UserRoleId
+                    UserRoleId = ward.WardUser.UserRoleId,
+                    IconURL = ward.WardUser.IconURL
                 });
 
             return usersData;
