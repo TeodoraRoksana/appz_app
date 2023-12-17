@@ -157,10 +157,15 @@ namespace MedApp.Services.Implementation
         public async Task<IEnumerable<AnalysisShortDataDTO>> GetAllAnalysisForUser(int userId)
         {
             // This cause exception if user does not exist
-            var user = await _usersService.GetUserByIdAsync(userId);
+            List<UserData> usersForRequest = (await _usersService.GetAllWardsForUser(userId)).ToList();
 
-            // TODO: add patients if user is doctor
-            var allAnalyses = (await _analysisResultRepository.GetByConditionAsync(e => e.UserDataId.Equals(userId)));
+            var user = await _usersService.GetUser(userId);
+
+            usersForRequest.Add(_mapper.Map<UserData>(user));
+
+            List<int> ids = usersForRequest.Select(user => user.Id).ToList();
+
+            var allAnalyses = (await _analysisResultRepository.GetByConditionAsync(e => ids.Contains(e.UserDataId)));
 
             return allAnalyses
                 .Select(analysis => new AnalysisShortDataDTO 

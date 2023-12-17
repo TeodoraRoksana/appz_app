@@ -34,7 +34,7 @@ namespace MedApp.Services.Implementation
             return entityDTO;
         }
 
-        private async Task<UserData> GetUser(int id)
+        public async Task<UserData> GetUser(int id)
         {
             var user = (await _userRepository.GetByConditionAsync(user => user.Id.Equals(id))).FirstOrDefault();
             if (user == null)
