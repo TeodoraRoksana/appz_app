@@ -10,6 +10,6 @@
 
         public string PatientSurname { get; set; } = string.Empty;
 
-        public DateTime? Time { get; set; }
+        public string? Date { get; set; }
     }
 }

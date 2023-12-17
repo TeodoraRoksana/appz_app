@@ -11,7 +11,7 @@ namespace Domain.Models
         public int UserDataId { get; set; } = 0;
 
         [JsonProperty("date")]
-        public DateTime? Time { get; set; }
+        public string? Date { get; set; }
 
         [JsonProperty("type_id")]
         public int AnalysisTypeId { get; set; }

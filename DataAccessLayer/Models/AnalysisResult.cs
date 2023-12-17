@@ -21,7 +21,7 @@ namespace Domain.Models
         virtual public UserData UserData { get; set; }
 
 
-        public DateTime? Time { get; set; }
+        public string? Date { get; set; }
 
 
         public int AnalysisTypeId { get; set; } = 0;

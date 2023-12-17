@@ -169,7 +169,7 @@ namespace MedApp.Services.Implementation
                     AnalysisName = analysis.AnalysisType.Name,
                     PatientName = analysis.UserData.Name,
                     PatientSurname = analysis.UserData.Surname,
-                    Time = analysis.Time
+                    Date = analysis.Date
                 });
         }
 
